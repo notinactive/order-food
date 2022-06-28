@@ -17,6 +17,11 @@ class FoodController extends Controller
 
     public function histories()
     {
-        //
+        $food = Food::where('id', request('food_id'))->with('orders')->get();
+        return response()->json($food, Response::HTTP_OK);
+        $histories = clone ($food)->with('orders')->get();
+        return response()->json($histories, Response::HTTP_OK);
+
+        return response()->json($histories, Response::HTTP_OK);
     }
 }

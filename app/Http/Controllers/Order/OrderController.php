@@ -14,4 +14,5 @@ class OrderController extends Controller
         $orders = Order::with('user')->get();
         return response()->json(new OrderCollection($orders), Response::HTTP_OK);
     }
+
 }
