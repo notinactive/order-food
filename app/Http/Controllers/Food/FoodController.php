@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Food;
 
+use App\Http\Requests\FoodRequest;
 use App\Models\Food;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
@@ -15,13 +16,27 @@ class FoodController extends Controller
         return response()->json(new FoodCollection($foods), Response::HTTP_OK);
     }
 
-    public function histories()
+    public function histories(FoodRequest $request)
     {
+        $validated = $request->validated();
+        if (isset($validated->message)) {
+            return response()->json($validated, Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        }
+
         $food = Food::where('id', request('food_id'))->with('orders')->get();
         return response()->json($food, Response::HTTP_OK);
-        $histories = clone ($food)->with('orders')->get();
-        return response()->json($histories, Response::HTTP_OK);
+    }
 
-        return response()->json($histories, Response::HTTP_OK);
+    public function inventory(FoodRequest $request)
+    {
+        $validated = $request->validated();
+        if (isset($validated->message)) {
+            return response()->json($validated, Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        }
+
+        $food = Food::find(request('food_id'));
+        return response()->json($food->warehouse_inventory, Response::HTTP_OK);
     }
 }

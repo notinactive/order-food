@@ -15,6 +15,7 @@ class FoodResource extends JsonResource
             'warehouse_inventory' => $this->warehouse_inventory,
             'status' => $this->status,
             'rate' => $this->rate,
+            'orders' => new OrderCollection($this->orders),
         ];
     }
 }

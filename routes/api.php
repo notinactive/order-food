@@ -17,8 +17,9 @@ Route::resource('foods', FoodController::class);
 //All routes which need login
 Route::middleware('auth:api')->group(function () {
     Route::post('food/histories', [FoodController::class, "histories"]);
-    Route::get('food/inventory', [FoodController::class, "histories"]);
+    Route::post('food/inventory', [FoodController::class, "inventory"]);
     Route::post('order/list', [OrderController::class, 'index']);
+    Route::post('order/acceptance', [OrderController::class, 'acceptOrder']);
 });
 
 
