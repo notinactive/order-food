@@ -17,4 +17,13 @@ class RegisterRequest extends FormRequest
             'mobile' => 'required|iran_mobile|unique:users,mobile',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'mobile.required' => 'وارد کردن شماره همراه الزامی است.',
+            'mobile.iran_mobile' => 'یک شماره همراه معتبر وارد نمائید.',
+            'mobile.unique' => 'با این شمراه همراه قبلا ثبت نام کرده اید.',
+        ];
+    }
 }
