@@ -2,61 +2,90 @@
 
 This project is prepared only for Asiatech coding challenge.
 
-This code contains some parts as below:
+This code contains some entities as below:
 
-- Controllers
-- Services
-- Models
-- Migrations
-- Seeders
-- Packages
-- Middlewares
-- Routes
+- Food
+- Order
+- Menu
+- User
 
-I will explain each of the above part, separately:
+I will explain all of API endpoint, separately:
 
-## Controllers
+## 1) Register
 
-This project has 3 controllers named: FoodController, AuthController, OrderController.
+API endpoint
 
-- AuthController: It is responsible for user's register and login processes
-- FoodController: It has all methods for show foods list, show one food details and so on.
-- OrderController: It has all me
+http://localhost:8000/api/register (POST Method)
 
-## Services
+- input: phone number
+- successful output (status 200): ثبت نام شما با موفقیت انجام شد 
+- Failed output (status 500): خطایی رخ داده است. لطفا مجددا تلاش نمائید
+- Failed output (status 422): Validation errors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## 2) Login
 
-### Models
+API endpoint
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+http://localhost:8000/api/login (POST Method)
 
-## Migrations
+- input: phone number
+- successful output (status 200): token value
+- Failed output (status 500): شما قبلا با این شماره همراه ثبت نام نکرده اید
+- Failed output (status 422): Validation errors
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3) Show Foods
 
-## Seeders
+API endpoint
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+http://localhost:8000/api/foods (GET Method)
 
-## Packages
+- successful output (status 200): List of foods
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## Middlewares
+## 4) Show Food Histories
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+API endpoint
 
-## Routes
+http://localhost:8000/api/food/histories (POST Methods)
+
+- input: token, food_id
+- successful output (status 200): List of the food's histories
+- Failed output (status 422): Validation errors
+
+## 5) Show Food Inventory
+
+API endpoint
+
+http://localhost:8000/api/food/inventory (POST Method)
+
+- input: token, food_id
+- successful output (status 200): count of the food 
+- Failed output (status 422): Validation errors
+
+## 6) Show Menus
+
+API endpoint
+
+http://localhost:8000/api/menus (GET Method)
+
+- successful output (status 200): list of menus
+
+## 7) Show Orders
+
+API endpoint
+
+http://localhost:8000/api/order/list (POST Method)
+
+- input: token
+- successful output (status 200): List of orders
+
+## 8) Accept Order by Admin
+
+API endpoint
+
+http://localhost:8000/api/order/acceptance (POST Method)
+
+- input: token, order_id, time_of_preparation
+- successful output (status 200): سفارش توسط شما تأیید شده و به کاربر نیز اطلاع داده خواهد شد
+- Failed output (status 422): Validation errors
+
